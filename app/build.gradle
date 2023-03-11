@@ -1,0 +1,130 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+    id 'dagger.hilt.android.plugin'
+    id 'kotlin-parcelize'
+}
+
+android {
+    compileSdk 32
+
+    defaultConfig {
+        applicationId "by.lebedev.exchanger"
+        minSdk 24
+        targetSdk 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            signingConfig signingConfigs.debug
+        }
+    }
+    buildscript {
+        repositories {
+            google()
+            mavenCentral()
+            maven { url 'https://jitpack.io' }
+        }
+        dependencies {
+            classpath 'com.jakewharton:butterknife-gradle-plugin:10.1.0'
+        }
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    flavorDimensions += "converter"
+    productFlavors {
+        dev {
+            buildConfigField("String", "EXCHANGE_RATES_URL", "\"https://developers.paysera.com/tasks/api/\"")
+            buildConfigField("String", "INIT_CURRENCY", "\"EUR\"")
+            buildConfigField("String", "HAS_FEE_KEY", "\"has_fee_key\"")
+            buildConfigField("Double", "INIT_CURRENCY_BALANCE", "1000.0")
+            buildConfigField("Double", "FEE_PERCENT", "0.7")
+            buildConfigField("Integer", "FEE_FREQUENCY", "5")
+        }
+        prod {
+            buildConfigField("String", "EXCHANGE_RATES_URL", "\"https://developers.paysera.com/tasks/api/\"")
+        }
+    }
+}
+
+dependencies {
+
+
+
+
+    testImplementation 'junit:junit:4.13.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    def mvrx_version = "2.6.1"
+    def epoxyVersion = "5.0.0-beta04"
+    def nav_version = "2.4.1"
+    def retrofit_version = "2.8.1"
+    def hilt_version = "2.38.1"
+    def lifecycle_version = "2.4.1"
+    def okhttp_version = "4.6.0"
+    def moshi_version = "1.13.0"
+    def picasso_version = "2.8"
+    def secure_pref_version = "1.1.0-alpha03"
+    def gson_version = "2.8.8"
+    def hilt_vm_version = "1.0.0-alpha03"
+    def hilt_compiler_version = "1.0.0"
+    def ktx_version = "1.6.0"
+    def appcompat_version = "1.5.0"
+    def material_version = "1.8.0"
+    def constraint_version = "2.1.4"
+    def junit_version = "5.0.2"
+    def junit_testng_version = "6.9.6"
+    def junit_ext_version = "4.13.2"
+    def espresso_version = "3.5.1"
+
+
+    implementation "androidx.core:core-ktx:$ktx_version"
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "com.google.android.material:material:$material_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_ext_version"
+    androidTestImplementation "androidx.test.espresso:$espresso_version"
+    implementation "com.airbnb.android:epoxy:$epoxyVersion"
+    kapt "com.airbnb.android:epoxy-processor:$epoxyVersion"
+    implementation "com.airbnb.android:epoxy-databinding:$epoxyVersion"
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_vm_version"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version"
+    kapt "androidx.hilt:hilt-compiler:$hilt_compiler_version"
+    implementation "com.squareup.okhttp3:okhttp:$okhttp_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
+    implementation "com.squareup.moshi:moshi:$moshi_version"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi_version"
+    implementation "com.airbnb.android:mavericks:$mvrx_version"
+    implementation "com.squareup.picasso:picasso:$picasso_version"
+    implementation "com.google.code.gson:gson:$gson_version"
+    implementation "androidx.security:security-crypto-ktx:$secure_pref_version"
+
+}

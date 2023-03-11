@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="kotlin.jvm.functions.Function1" />
+
+        <import type="kotlin.Unit" />
+
+        <variable
+            name="items"
+            type="java.util.List&lt;String>" />
+
+        <variable
+            name="selectedCurrency"
+            type="String" />
+
+        <variable
+            name="receiveAmount"
+            type="String" />
+
+        <variable
+            name="onCurrencyChanged"
+            type="Function1&lt; String,Unit>" />
+
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/sell_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_default"
+            android:src="@drawable/ic_receive"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sell_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_half"
+            android:text="@string/receive"
+            android:textColor="@color/black"
+            android:textSize="@dimen/medium_text"
+            app:layout_constraintBottom_toBottomOf="@+id/sell_iv"
+            app:layout_constraintStart_toEndOf="@+id/sell_iv"
+            app:layout_constraintTop_toTopOf="@+id/sell_iv" />
+
+        <TextView
+            android:id="@+id/value_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_half"
+            android:layout_marginEnd="@dimen/margin_half"
+            android:text="@{receiveAmount}"
+            android:textColor="@color/green_receive"
+            android:textSize="@dimen/medium_text"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="@+id/sell_iv"
+            app:layout_constraintEnd_toStartOf="@+id/sell_dd"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintStart_toEndOf="@+id/sell_tv"
+            app:layout_constraintTop_toTopOf="@+id/sell_iv"
+            tools:text="5632323.23" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/sell_dd"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_default"
+            app:layout_constraintBottom_toBottomOf="@+id/sell_iv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/sell_iv">
+
+            <AutoCompleteTextView
+                setCurrencies="@{items}"
+                setInitValue="@{selectedCurrency}"
+                setTextChangedListener="@{onCurrencyChanged}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

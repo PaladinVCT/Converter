@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Currency converter</string>
+    <string name="error_connection">Connection error. Check your internet connection</string>
+    <string name="error_network">Network</string>
+    <string name="error_unclassified">Unclassified</string>
+    <string name="error_challenge">Challenge</string>
+    <string name="error_timeout">Timeout error. try Again</string>
+    <string name="error_io">"Disk transfer error "</string>
+    <string name="error_mapping">Error parsing JSON</string>
+    <string name="error_unauthorized">Signed out. Log in</string>
+    <string name="my_balances">My balances</string>
+    <string name="currency_exchange">Currency exchange</string>
+    <string name="submit">Submit</string>
+    <string name="receive">Receive</string>
+    <string name="sell">Sell</string>
+    <string name="currency_converted">Currency converted</string>
+    <string name="done">Done</string>
+    <string name="conversion_message">You have converted %1$s to %2$s.</string>
+    <string name="conversion_message_with_fee">You have converted %1$s to %2$s. Commission Fee - %3$s.</string>
+</resources>
